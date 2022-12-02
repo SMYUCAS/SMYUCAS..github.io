@@ -14,7 +14,7 @@
   // 基于准备好的dom，初始化echarts实例
   var myChart = echarts.init(document.getElementById('main'));
   myChart.showLoading();
-  $.get('https://geo.datav.aliyun.com/areas_v3/bound/110000_full.json', function (ss) {
+  $.get('110000_full.json', function (ss) {
     myChart.hideLoading();
     myChart.setOption(
             (option = {
