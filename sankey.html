@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>ECharts</title>
+  <!-- 引入刚刚下载的 ECharts 文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+</head>
+<body>
+<!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+<div id="main" style="width: 100%;height:500px;"></div>
+<script type="text/javascript">
+  // 基于准备好的dom，初始化echarts实例
+  var myChart = echarts.init(document.getElementById('main'));
+  myChart.showLoading();
+  $.get('https://geo.datav.aliyun.com/areas_v3/bound/110000_full.json', function (ss) {
+    myChart.hideLoading();
+    myChart.setOption(
+            (option = {
+              title: {
+                // text: '(单位：平方米)',
+              },
+              tooltip: {
+                trigger: 'item',
+                triggerOn: 'mousemove'
+              },
+              series: [
+                {
+                  type: 'sankey',
+                  data: [
+                    {
+                      "name": "Cropland_2020"
+                    },
+                    {
+                      "name": "Bare / sparse vegetation_2020"
+                    },
+                    {
+                      "name": "Shrubland_2020"
+                    },
+                    {
+                      "name": "Permanent water bodies_2020"
+                    },
+                    {
+                      "name": "Tree cover_2020"
+                    },
+                    {
+                      "name": "Grassland_2020"
+                    },
+                    {
+                      "name": "Built-up_2020"
+                    },
+                    {
+                      "name": "Herbaceous wetland_2020"
+                    },
+                    {
+                      "name": "Bare / sparse vegetation_2021"
+                    },
+                    {
+                      "name": "Built-up_2021"
+                    },
+                    {
+                      "name": "Herbaceous wetland_2021"
+                    },
+                    {
+                      "name": "Permanent water bodies_2021"
+                    },
+                    {
+                      "name": "Shrubland_2021"
+                    },
+                    {
+                      "name": "Tree cover_2021"
+                    },
+                    {
+                      "name": "Cropland_2021"
+                    },
+                    {
+                      "name": "Grassland_2021"
+                    }
+                  ],
+                  links: [
+                    {
+                      "source": "Cropland_2020",
+                      "target": "Bare / sparse vegetation_2021",
+                      "value": 103831675
+                    },
+                    {
+                      "source": "Bare / sparse vegetation_2020",
+                      "target": "Built-up_2021",
+                      "value": 11974099
+                    },
+                    {
+                      "source": "Shrubland_2020",
+                      "target": "Bare / sparse vegetation_2021",
+                      "value": 250279
+                    },
+                    {
+                      "source": "Cropland_2020",
+                      "target": "Built-up_2021",
+                      "value": 74931829
+                    },
+                    {
+                      "source": "Shrubland_2020",
+                      "target": "Herbaceous wetland_2021",
+                      "value": 2460
+                    },
+                    {
+                      "source": "Cropland_2020",
+                      "target": "Permanent water bodies_2021",
+                      "value": 5351655
+                    },
+                    {
+                      "source": "Permanent water bodies_2020",
+                      "target": "Bare / sparse vegetation_2021",
+                      "value": 17866435
+                    },
+                    {
+                      "source": "Bare / sparse vegetation_2020",
+                      "target": "Bare / sparse vegetation_2021",
+                      "value": 52952938
+                    },
+                    {
+                      "source": "Permanent water bodies_2020",
+                      "target": "Built-up_2021",
+                      "value": 2092901
+                    },
+                    {
+                      "source": "Bare / sparse vegetation_2020",
+                      "target": "Herbaceous wetland_2021",
+                      "value": 68212
+                    },
+                    {
+                      "source": "Permanent water bodies_2020",
+                      "target": "Permanent water bodies_2021",
+                      "value": 226058694
+                    },
+                    {
+                      "source": "Cropland_2020",
+                      "target": "Herbaceous wetland_2021",
+                      "value": 1209447
+                    },
+                    {
+                      "source": "Bare / sparse vegetation_2020",
+                      "target": "Permanent water bodies_2021",
+                      "value": 2320867
+                    },
+                    {
+                      "source": "Permanent water bodies_2020",
+                      "target": "Herbaceous wetland_2021",
+                      "value": 2153306
+                    },
+                    {
+                      "source": "Shrubland_2020",
+                      "target": "Shrubland_2021",
+                      "value": 39410
+                    },
+                    {
+                      "source": "Cropland_2020",
+                      "target": "Tree cover_2021",
+                      "value": 119411439
+                    },
+                    {
+                      "source": "Shrubland_2020",
+                      "target": "Tree cover_2021",
+                      "value": 5370
+                    },
+                    {
+                      "source": "Shrubland_2020",
+                      "target": "Cropland_2021",
+                      "value": 336792
+                    },
+                    {
+                      "source": "Cropland_2020",
+                      "target": "Grassland_2021",
+                      "value": 115327084
+                    },
+                    {
+                      "source": "Bare / sparse vegetation_2020",
+                      "target": "Shrubland_2021",
+                      "value": 6971
+                    },
+                    {
+                      "source": "Permanent water bodies_2020",
+                      "target": "Tree cover_2021",
+                      "value": 1653885
+                    },
+                    {
+                      "source": "Cropland_2020",
+                      "target": "Shrubland_2021",
+                      "value": 14927006
+                    },
+                    {
+                      "source": "Bare / sparse vegetation_2020",
+                      "target": "Tree cover_2021",
+                      "value": 581791
+                    },
+                    {
+                      "source": "Bare / sparse vegetation_2020",
+                      "target": "Cropland_2021",
+                      "value": 8307582
+                    },
+                    {
+                      "source": "Permanent water bodies_2020",
+                      "target": "Grassland_2021",
+                      "value": 2047048
+                    },
+                    {
+                      "source": "Cropland_2020",
+                      "target": "Cropland_2021",
+                      "value": 2313154083
+                    },
+                    {
+                      "source": "Bare / sparse vegetation_2020",
+                      "target": "Grassland_2021",
+                      "value": 1009311
+                    },
+                    {
+                      "source": "Permanent water bodies_2020",
+                      "target": "Shrubland_2021",
+                      "value": 10485
+                    },
+                    {
+                      "source": "Permanent water bodies_2020",
+                      "target": "Cropland_2021",
+                      "value": 8057316
+                    },
+                    {
+                      "source": "Tree cover_2020",
+                      "target": "Bare / sparse vegetation_2021",
+                      "value": 131874143
+                    },
+                    {
+                      "source": "Grassland_2020",
+                      "target": "Built-up_2021",
+                      "value": 47745742
+                    },
+                    {
+                      "source": "Tree cover_2020",
+                      "target": "Built-up_2021",
+                      "value": 66888312
+                    },
+                    {
+                      "source": "Tree cover_2020",
+                      "target": "Permanent water bodies_2021",
+                      "value": 10528286
+                    },
+                    {
+                      "source": "Built-up_2020",
+                      "target": "Bare / sparse vegetation_2021",
+                      "value": 85268773
+                    },
+                    {
+                      "source": "Grassland_2020",
+                      "target": "Bare / sparse vegetation_2021",
+                      "value": 211423047
+                    },
+                    {
+                      "source": "Built-up_2020",
+                      "target": "Built-up_2021",
+                      "value": 2322405426
+                    },
+                    {
+                      "source": "Grassland_2020",
+                      "target": "Herbaceous wetland_2021",
+                      "value": 642958
+                    },
+                    {
+                      "source": "Built-up_2020",
+                      "target": "Permanent water bodies_2021",
+                      "value": 485007
+                    },
+                    {
+                      "source": "Herbaceous wetland_2020",
+                      "target": "Bare / sparse vegetation_2021",
+                      "value": 349134
+                    },
+                    {
+                      "source": "Tree cover_2020",
+                      "target": "Herbaceous wetland_2021",
+                      "value": 698291
+                    },
+                    {
+                      "source": "Grassland_2020",
+                      "target": "Permanent water bodies_2021",
+                      "value": 8515444
+                    },
+                    {
+                      "source": "Herbaceous wetland_2020",
+                      "target": "Built-up_2021",
+                      "value": 7355
+                    },
+                    {
+                      "source": "Herbaceous wetland_2020",
+                      "target": "Permanent water bodies_2021",
+                      "value": 2105818
+                    },
+                    {
+                      "source": "Herbaceous wetland_2020",
+                      "target": "Herbaceous wetland_2021",
+                      "value": 2121591
+                    },
+                    {
+                      "source": "Tree cover_2020",
+                      "target": "Shrubland_2021",
+                      "value": 8409976
+                    },
+                    {
+                      "source": "Grassland_2020",
+                      "target": "Tree cover_2021",
+                      "value": 359349331
+                    },
+                    {
+                      "source": "Tree cover_2020",
+                      "target": "Tree cover_2021",
+                      "value": 7253098659
+                    },
+                    {
+                      "source": "Tree cover_2020",
+                      "target": "Cropland_2021",
+                      "value": 339640336
+                    },
+                    {
+                      "source": "Grassland_2020",
+                      "target": "Grassland_2021",
+                      "value": 1674139198
+                    },
+                    {
+                      "source": "Built-up_2020",
+                      "target": "Shrubland_2021",
+                      "value": 414627
+                    },
+                    {
+                      "source": "Tree cover_2020",
+                      "target": "Grassland_2021",
+                      "value": 401750054
+                    },
+                    {
+                      "source": "Grassland_2020",
+                      "target": "Shrubland_2021",
+                      "value": 1192688
+                    },
+                    {
+                      "source": "Built-up_2020",
+                      "target": "Tree cover_2021",
+                      "value": 96601385
+                    },
+                    {
+                      "source": "Built-up_2020",
+                      "target": "Cropland_2021",
+                      "value": 91871933
+                    },
+                    {
+                      "source": "Herbaceous wetland_2020",
+                      "target": "Shrubland_2021",
+                      "value": 9092
+                    },
+                    {
+                      "source": "Grassland_2020",
+                      "target": "Cropland_2021",
+                      "value": 193107526
+                    },
+                    {
+                      "source": "Built-up_2020",
+                      "target": "Grassland_2021",
+                      "value": 11068658
+                    },
+                    {
+                      "source": "Herbaceous wetland_2020",
+                      "target": "Tree cover_2021",
+                      "value": 50066
+                    },
+                    {
+                      "source": "Herbaceous wetland_2020",
+                      "target": "Cropland_2021",
+                      "value": 2731894
+                    },
+                    {
+                      "source": "Herbaceous wetland_2020",
+                      "target": "Grassland_2021",
+                      "value": 1287264
+                    }
+                  ],
+                  emphasis: {
+                    focus: 'adjacency'
+                  },
+                  lineStyle: {
+                    color: 'gradient',
+                    curveness: 0.5
+                  }
+                }
+              ]
+            })
+    );
+  });
+</script>
+</body>
+</html>

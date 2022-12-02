@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>ECharts</title>
+  <!-- 引入刚刚下载的 ECharts 文件 -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.0/dist/echarts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+</head>
+<body>
+<!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+<div id="main" style="width: 700px;height:500px;"></div>
+<script type="text/javascript">
+  // 基于准备好的dom，初始化echarts实例
+  var myChart = echarts.init(document.getElementById('main'));
+  myChart.showLoading();
+  $.get('https://geo.datav.aliyun.com/areas_v3/bound/110000_full.json', function (geoJson) {
+    myChart.hideLoading();
+    echarts.registerMap('HK', geoJson);
+    myChart.setOption(
+            (option = {
+              title: {
+                // text: 'Population Density of Hong Kong （2011）',
+                // subtext: 'Data from Wikipedia',
+                // sublink:
+                //         'http://zh.wikipedia.org/wiki/%E9%A6%99%E6%B8%AF%E8%A1%8C%E6%94%BF%E5%8D%80%E5%8A%83#cite_note-12'
+              },
+              tooltip: {
+                trigger: 'item',
+                formatter: '{b}<br/>{c} (m^2)'
+              },
+              toolbox: {
+                show: false,
+                orient: 'vertical',
+                left: 'center',
+                top: 'center',
+                feature: {
+                  dataView: { readOnly: false },
+                  restore: {},
+                  saveAsImage: {}
+                }
+              },
+              visualMap: {
+                min: 9000000,
+                max: 1500000000,
+                text: ['High', 'Low'],
+                realtime: true,
+                calculable: true,
+                inRange: {
+                  color: ['lightskyblue', 'yellow', 'orangered']
+                }
+                // 设置位置为左下角
+
+              },
+              series: [
+                {
+                  type: 'map',
+                  map: 'HK',
+                  label: {
+                    show: true
+                  },
+                  data: [{'name': '西城区', 'value': 9786497}, {'name': '东城区', 'value': 9636837},{'name': '朝阳区', 'value': 103687810}, {'name': '丰台区', 'value': 70236880}, {'name': '石景山区', 'value': 35652202}, {'name': '海淀区', 'value': 160077409}, {'name': '门头沟区', 'value': 843206340}, {'name': '房山区', 'value': 906233811}, {'name': '通州区', 'value': 145829896}, {'name': '顺义区', 'value': 225847348}, {'name': '昌平区', 'value': 706404257}, {'name': '大兴区', 'value': 144558833}, {'name': '怀柔区', 'value': 1470468417}, {'name': '平谷区', 'value': 490588146}, {'name': '密云区', 'value': 1309791562}, {'name': '延庆区', 'value': 1198735468}],
+
+                }
+              ]
+            })
+    );
+  });
+</script>
+</body>
+</html>
